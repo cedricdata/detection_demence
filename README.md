@@ -21,131 +21,126 @@ Mettre en place un modèle prédictif chargé de détecter la présence de déme
     
 - **Analyse univariée de la variable à expliquer**:
 - **Variable qualitatives**:
-         - Group:  en fonction de leur état cognitif, les patients sont regroupés dans 3 classes.\ Demented(souffre de démence), Nondemented(pas de démence), Converted(démence en cours de développement)\
-         On observe un déséquilibre de classe, 50% de patients ne souffrant pas de démence, 40% de patients souffrant de démence et 10% de patients qui développent une démence, au cours de l'étude.
+    - Group:  en fonction de leur état cognitif, les patients sont regroupés dans 3 classes.\
+    - Demented(souffre de démence), Nondemented(pas de démence), Converted(démence en cours de développement)\
+
+On observe un déséquilibre de classe, 50% de patients ne souffrant pas de démence, 40% de patients souffrant de démence et 10% de patients qui développent une démence, au cours de l'étude.
          
 - **Analyse univariée des variables explicatives**:
-  - **Variables quantitatives**: 
-        - nWBV: Volume total du cerveau, normalisé 
-        - ASF: Volume intracranien du patient, normalisé
-        - eTIV: Estimation du volume intracranien du patient, exprimé en mm3
-        - Visit: Nombre de visite nécésessaire pour statuer sur la présence démence
-        - MR Delay: Non défini, probablement lié à la mesure de l'IRM
-        - Age: Age du patient, exprimé en année
-        - EDUC: Age du patient à la fin de ces études, exprimé en année
-        - MMSE: Mini-Mental State Examination score (de 0(pire) à 30(meilleur)). C'est un test d'évaluation des fonctions cognitives et des capacités mnésiques d'un individu.
+ - **Variables quantitatives**: 
+     - nWBV: Volume total du cerveau, normalisé 
+     - ASF: Volume intracranien du patient, normalisé
+     - eTIV: Estimation du volume intracranien du patient, exprimé en mm3
+     - Visit: Nombre de visite nécésessaire pour statuer sur la présence démence
+     - MR Delay: Non défini, probablement lié à la mesure de l'IRM
+     - Age: Age du patient, exprimé en année
+     - EDUC: Age du patient à la fin de ces études, exprimé en année
+     - MMSE: Mini-Mental State Examination score (de 0(pire) à 30(meilleur)). C'est un test d'évaluation des fonctions cognitives et des capacités mnésiques d'un individu.
   - **Analyse des distributions**\
 Les variables 'nWBV' et  'Age' semblent présenter une distribution gaussienne.<br><br  /> 
 
   - **Variable qualitatives**:
-        - SES: Statut socio-économique tel qu'évalué par l'indice Hollingshead (de 1(meilleur) à 5(plus bas))
-        - CDR: Taux de démence clinique (0 = pas de démence, 0.5 = démence très sévère, 1 = démence sévère, 2 = démence modérée)  
-        - M/F: Sexe du patient
+      - SES: Statut socio-économique tel qu'évalué par l'indice Hollingshead (de 1(meilleur) à 5(plus bas))
+      - CDR: Taux de démence clinique (0 = pas de démence, 0.5 = démence très sévère, 1 = démence sévère, 2 = démence modérée)  
+      - M/F: Sexe du patient
         
 <h2><center>Tests statistiques </center></h2>
-        
-- **Description des tests statistiques usuels**: 
 
-  - **Variables quantitatives**: 
-        - **Test de Pearson**: *Test de dépendance entre 2 variables quantitatives*\
+**Description des tests statistiques usuels**: 
+
+ - **Variables quantitatives**: 
+   - **Test de Pearson**: *Test de dépendance entre 2 variables quantitatives*\
 Hypothèse nulle H0: les 2 variables sont indépendantes.
-        - **Coefficient corrélation de Pearson**: *Quantifie la corrélation entre 2 variables quantitatives*<br><br />
-  - **Variables qualitatives**: 
-        - **Test du chi2**: *Test de dépendance entre 2 variables qualitatives*\
+   - **Coefficient corrélation de Pearson**: *Quantifie la corrélation entre 2 variables quantitatives*<br><br />
+ - **Variables qualitatives**: 
+   - **Test du chi2**: *Test de dépendance entre 2 variables qualitatives*\
 Hypothèse nulle H0: les 2 variables sont indépendantes
-        - **V de Cramer**: *Quantifie la dépendance entre 2 variables qualitatives*<br><br />
-  - **Variables quantitatives et qualitatives**:
-        - **Test ANOVA** (Analyse de la variance à un facteur) *Test de dépendance entre une variable qualitative et une variable quantitative*\
+   - **V de Cramer**: *Quantifie la dépendance entre 2 variables qualitatives*<br><br />
+ - **Variables quantitatives et qualitatives**:
+   - **Test ANOVA** (Analyse de la variance à un facteur) *Test de dépendance entre une variable qualitative et une variable quantitative*\
 Hypothèse nulle H0: les 2 variables sont indépendantes <br><br />
 
-  - **Analyse des distributions**:
-        - **Test de Shapiro-Wilk**: *Test de normalité de la distribution d'une série statistique*\
+ - **Analyse des distributions**:
+    - **Test de Shapiro-Wilk**: *Test de normalité de la distribution d'une série statistique*\
         Hypothèse nulle H0: la distribution suit une loi Normale 
-        - **Test de Bartlett**: *Test d'homoscédasticité permettant de vérifier l'égalité des variances entre 2 séries statistiques*\
+    - **Test de Bartlett**: *Test d'homoscédasticité permettant de vérifier l'égalité des variances entre 2 séries statistiques*\
         Hypothèse nulle H0: les variances sont égales <br><br /> 
         
-  - **Tests non paramétriques**: 
-        - **Test de Wilcoxon**: *Test d'égalité entre les médianes de 2 séries statistiques si le test de normalité n'est pas respecté.*\
+ - **Tests non paramétriques**: 
+    - **Test de Wilcoxon**: *Test d'égalité entre les médianes de 2 séries statistiques si le test de normalité n'est pas respecté.*\
         Hypothèse nulle H0: les médianes sont égales<br><br />
         
-  - **Tests paramétriques**:
-        - **Test de Welch**: *Test d'égalité entre les moyennes de 2 séries statistiques, si la condition de normalité est respectée et si la condition d'homoscédasticité ne l'est pas.*\
+ - **Tests paramétriques**:
+     - **Test de Welch**: *Test d'égalité entre les moyennes de 2 séries statistiques, si la condition de normalité est respectée et si la condition d'homoscédasticité ne l'est pas.*\
          Hypothèse nulle H0: les moyennes sont égales
-  - **Test de Student**: *Test d'égalité entre les moyennes de 2 séries statistiques, si les conditions de normalité et d'homoscédasticité sont respectées.*\
+     - **Test de Student**: *Test d'égalité entre les moyennes de 2 séries statistiques, si les conditions de normalité et d'homoscédasticité sont respectées.*\
         Hypothèse nulle H0: les moyennes sont égales.
         
 <h2><center>Etude des corrélations entre variables explicatives et variable à expliquer</center></h2>
         
- - **Analyse multivariée entre variables explicatives et variable à expliquer**:
+ **Analyse multivariée entre variables explicatives et variable à expliquer**:
   -  **Variables quantitatives**:
-          - Relation nWBV/Group: Hypothèse: le volume total du cerveau semble lié à l'apparition de la démence.
-          - Relation Age/Group: Hypothèse: l'âge semble lié à l'apparition de la démence.
-          - Relation EDUC/Group: hypothèse: la durée des études semble lié à l'apparition de la démence. Plus le patient a fait de longues études et moins le risque de développer une démence est grand.
-          - Relation MMSE/Group: hypothèse: plus le score MMSE est faible et plus le risque de détecter une démence est important.\
+        - Relation nWBV/Group: Hypothèse: le volume total du cerveau semble lié à l'apparition de la démence.
+        - Relation Age/Group: Hypothèse: l'âge semble lié à l'apparition de la démence.
+        - Relation EDUC/Group: hypothèse: la durée des études semble lié à l'apparition de la démence. Plus le patient a fait de longues études et moins le risque de développer une démence est grand.
+        - Relation MMSE/Group: hypothèse: plus le score MMSE est faible et plus le risque de détecter une démence est important.\
 Les variables ASF et eTIV ne semble pas lié à l'apparition de la démence chez un patients.
 
 -  **Variables qualitatives**:
-         - Relation M/F/Group: hypothèse: proportionnellement, les hommes (38% + 8%) semblent d'avantage touchés que les femmes (28% + 11%) par l'apparition d'une démence
+        - Relation M/F/Group: hypothèse: proportionnellement, les hommes (38% + 8%) semblent d'avantage touchés que les femmes (28% + 11%) par l'apparition d'une démence
          
          
 <h2><center>Etude des corrélations entre variables explicatives </center></h2>
 
-- **Analyse multivariée entre variables explicatives**:
+**Analyse multivariée entre variables explicatives**:
    - **Analyse multivariée entre variables quantitatives**:
-         - Relation entre eTIV/ASF: les variables sont parfaitement corrélées négativement.
-         - Relation entre nWBV/Age: l'age du patient et le volume total du cerveau sont négativement corrélée.
+       - Relation entre eTIV/ASF: les variables sont parfaitement corrélées négativement.
+       - Relation entre nWBV/Age: l'age du patient et le volume total du cerveau sont négativement corrélée.
    - **Analyse multivariée entre variables quantitatives et variables qualitatives**:
-         - Relation Visit/MR Delay: les variables sont fortement corrélés.
-         - Relation EDUC/SES: les variables sont négativement corrélés. Plus le patient à fait des études et plus le statut socioéconomique est élevé.
+       - Relation Visit/MR Delay: les variables sont fortement corrélés.
+       - Relation EDUC/SES: les variables sont négativement corrélés. Plus le patient à fait des études et plus le statut socioéconomique est élevé.
    - **Analyse multivariée entre variables qualitatives**
-         - Relation M/F/CDR: les femmes sont moins touchées par la démence
+       - Relation M/F/CDR: les femmes sont moins touchées par la démence
          
 <h1>3. Data-preprocessing</h1>
          
 <h2><center>Features engeenering</center></h2>
 
-- **Features engeenering**
-  - **Variables quantitatives**:
-        - ratio: cette variable est le rapport entre le volume total de l'encéphale (nWBV) et le volume intracranien du patient (ASF). Cette nouvelle grandeur permet de mieux cerner le phénomène d'atrophie corticale.
-  - **Variable qualitatives**:
-        - malade: cette variable prend la valeur 1 pour un patient atteint de démence ou qui en développera une et la valeur 0 sinon. 
+- **Variables quantitatives**:
+   - ratio: cette variable est le rapport entre le volume total de l'encéphale (nWBV) et le volume intracranien du patient (ASF). Cette nouvelle grandeur permet de mieux cerner le phénomène d'atrophie corticale.
+- **Variable qualitatives**:
+   - malade: cette variable prend la valeur 1 pour un patient atteint de démence ou qui en développera une et la valeur 0 sinon. 
         
 <h2><center>Features selection</center></h2>
 
-- **Features Selection**
-
-  - **Variables quantitatives**: 
-        - nWBV: éliminée car l'information de cette variable explicative est contenue dans la variable ratio
-        - ASF: éliminée car l'information de cette variable explicative est contenue dans la variable ratio
-        - eTIV: éliminée car l'information de cette variable explicative est contenue dans la variable ASF
-        - Visit: éliminée car le nombre de visiste n'a pas de lien avec la détection de la maladie
-        - MR Delay: éliminée car cette variable explicative est inconnue 
-        - Age: conservée car l'âge d'un patient est lié à la maladie
-        - EDUC: conservé car le niveau d'éducation est lié à la maladie
-        - MMSE: conservé car cette variable explicative est nécéssaire au diagnostique de la maladie
-        - ratio: conservé car cette variable explicative est nécéssaire au diagnostique de la maladie
-  - **Variables qualitatives**:
-        - SES: conservé car le statut est lié à la maladie
-        - CDR: éliminé car cette variable explicative est un indicateur qui mesure la sévérité de la démence, elle ne peut pas  en être la cause.
-        - Group: éliminée car cette ancienne variable à expliquer est remplacé par la nouvelle variable malade  
-        - M/F: conservée car le sexe du patient est lié à la maladie 
-        - Malade: conservée car c'est la nouvelle variable à expliquée
+- **Variables quantitatives**: 
+   - nWBV: éliminée car l'information de cette variable explicative est contenue dans la variable ratio
+   - ASF: éliminée car l'information de cette variable explicative est contenue dans la variable ratio
+   - eTIV: éliminée car l'information de cette variable explicative est contenue dans la variable ASF
+   - Visit: éliminée car le nombre de visiste n'a pas de lien avec la détection de la maladie
+   - MR Delay: éliminée car cette variable explicative est inconnue 
+   - Age: conservée car l'âge d'un patient est lié à la maladie
+   - EDUC: conservé car le niveau d'éducation est lié à la maladie
+   - MMSE: conservé car cette variable explicative est nécéssaire au diagnostique de la maladie
+   - ratio: conservé car cette variable explicative est nécéssaire au diagnostique de la maladie
+- **Variables qualitatives**:
+   - SES: conservé car le statut est lié à la maladie
+   - CDR: éliminé car cette variable explicative est un indicateur qui mesure la sévérité de la démence, elle ne peut pas  en être la cause.
+   - Group: éliminée car cette ancienne variable à expliquer est remplacé par la nouvelle variable malade  
+   - M/F: conservée car le sexe du patient est lié à la maladie 
+   - Malade: conservée car c'est la nouvelle variable à expliquée
         
 <h2><center>Features encoding</center></h2>
 
-- **Encodage des variables**
-
-  - **Variables qualitatives**:
-        - M/F: M remplacé par 1 et F remplacé par 0
+- **Variables qualitatives**:
+   - M/F: M remplacé par 1 et F remplacé par 0
         
- <h2><center>Imputation des valeurs manquantes</center></h2>
+<h2><center>Imputation des valeurs manquantes</center></h2>
 
-- **Imputation des valeurs manquantes**
-
-  - **Variables quantitatives**: 
-        - MMSE: pour cette variable, les valeurs manquantes concernent le groupe des patients malades. La solution consiste à remplacer les valeurs manquantes par le mode de la variable MMSE dans le groupe des patients malades. 
-  - **Variables qualitatives**:
-        - SES: pour cette variable, les valeurs manquantes concernent le groupe des patients malades. La solution consiste à remplacer les valeurs manquantes par le mode de la variable SES dans le groupe des patients malades. 
+ - **Variables quantitatives**: 
+   - MMSE: pour cette variable, les valeurs manquantes concernent le groupe des patients malades. La solution consiste à remplacer les valeurs manquantes par le mode de la variable MMSE dans le groupe des patients malades. 
+ - **Variables qualitatives**:
+   - SES: pour cette variable, les valeurs manquantes concernent le groupe des patients malades. La solution consiste à remplacer les valeurs manquantes par le mode de la variable SES dans le groupe des patients malades. 
    
 <h2><center>Séparation du jeu de données</center></h2>
 
@@ -153,21 +148,21 @@ Les variables ASF et eTIV ne semble pas lié à l'apparition de la démence chez
 
  - **Variables explicatives**: 
       
-      - X_train: Age, EDUC, MMSE, ratio, SES, M/F
+   - X_train: Age, EDUC, MMSE, ratio, SES, Sex
         
  - **Variables à expliquer**: 
      
-      - y_train: Malade
+   - y_train: Malade
       
 - **Jeu de données de test**: 20% des données du dataset
 
  - **Variables explicatives**: 
       
-      - X_test: Age, EDUC, MMSE, ratio, SES, M/F
+   - X_test: Age, EDUC, MMSE, ratio, SES, Sex
         
-     - **Variables à expliquer**: 
+ - **Variables à expliquer**: 
      
-      - y_test: Malade
+   - y_test: Malade
       
  <h1>4. Fonctions d'évaluations des modèles</h1>
 
@@ -187,17 +182,17 @@ Cette courbe est limitée à la classification binaire, elle permet de visualise
 
 <h2><center>Première modélisation avec un arbre de décision</center></h2>
 
-- **Arbre de décision**
-  - **Hyper-paramètres**:
+
+- **Hyper-paramètres**:
         - max_depth: 3
         
-  - **Métriques**:
+- **Métriques**:
         - Précision: 79%
         - Recall: 79%
         - F1 Score: 79% 
         - Accuracy: 79%
      
-  - **Features importance**: 
+- **Features importance**: 
         - MMSE: 0.54 La variable MMSE est de loin celle qui à la pondération la plus importante dans le cadre de la détection de la démence.
         - ratio:  0.19 Dans une moindre mesure, la variable ratio joue également un rôle dans la prédiction.
         - Age: 0.09 L'impact des autres variables (Age, EDUC, M/F et SES) est marginal sur la classification.
