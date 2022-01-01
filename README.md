@@ -210,37 +210,37 @@ La courbe montre que la sensibilité augmente lentement, à mesure que le seuil 
         
 <h2><center>Autres modélisations</center></h2>
 
-- **Liste des estimateurs et métriques obtenues**
-  - **SVC**:
-        - Précision: 90%
-        - Recall: 88%
-        - F1 Score: 88% 
-        - Accuracy: 88%
-  - **KNN**:
-        - Précision: 87%
-        - Recall: 85%
-        - F1 Score: 85% 
-        - Accuracy: 85%
-  - **AdaBoostClassifier**:
-        - Précision: 80%
-        - Recall: 80%
-        - F1 Score: 80% 
-        - Accuracy: 80%
-  - **RandomForestClassifier**:
-        - Précision: 90%
-        - Recall: 89%
-        - F1 Score: 89% 
-        - Accuracy: 89%
-  - **XgBoostClassifier**:
-        - Précision: 88%
-        - Recall: 87%
-        - F1 Score: 87% 
-        - Accuracy: 87%
-  - **Regression logistique**:
-        - Précision: 87%
-        - Recall: 85%
-        - F1 Score: 85% 
-        - Accuracy: 85%
+**Liste des estimateurs et métriques obtenues**
+ - **SVC**:
+   - Précision: 90%
+   - Recall: 88%
+   - F1 Score: 88% 
+   - Accuracy: 88%
+ - **KNN**:
+   - Précision: 87%
+   - Recall: 85%
+   - F1 Score: 85% 
+   - Accuracy: 85%
+ - **AdaBoostClassifier**:
+   - Précision: 80%
+   - Recall: 80%
+   - F1 Score: 80% 
+   - Accuracy: 80%
+ - **RandomForestClassifier**:
+   - Précision: 90%
+   - Recall: 89%
+   - F1 Score: 89% 
+   - Accuracy: 89%
+ - **XgBoostClassifier**:
+   - Précision: 88%
+   - Recall: 87%
+   - F1 Score: 87% 
+   - Accuracy: 87%
+ - **Regression logistique**:
+   - Précision: 87%
+   - Recall: 85%
+   - F1 Score: 85% 
+   - Accuracy: 85%
         
 Les estimateurs produisant les meilleurs scores sont: RandomForestClassifier et SVM. Ces derniers sont retenus dans le cadre de la modélisation finale, leurs optimisation se fera par réglage de leurs hyperparamètres.
 
@@ -260,6 +260,12 @@ Les estimateurs produisant les meilleurs scores sont: RandomForestClassifier et 
      - EDUC: 0.07
      - M/F: 0.05
      - SES: 0.05
+
+- **Evaluation**:
+   - Précision: 97%
+   - Recall: 84%
+   - F1 Score: 91% 
+   - Accuracy: 91%
       
 <h2><center>Deuxième estimateur: SVM</center></h2>
 
@@ -268,6 +274,12 @@ Les estimateurs produisant les meilleurs scores sont: RandomForestClassifier et 
     - C: 100
     - Kernel: rbf
     - degre: 1
+
+- **Evaluation**:
+   - Précision: 86%
+   - Recall: 86%
+   - F1 Score: 86% 
+   - Accuracy: 86%
     
 <h1>7. Conclusion</h1>
 
