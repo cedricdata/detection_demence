@@ -87,7 +87,7 @@ Hypothèse nulle H0: les 2 variables sont indépendantes <br><br />
 Les variables ASF et eTIV ne semble pas lié à l'apparition de la démence chez un patients.
 
 -  **Variables qualitatives**:
-        - Relation M/F/Group: hypothèse: proportionnellement, les hommes (38% + 8%) semblent d'avantage touchés que les femmes (28% + 11%) par l'apparition d'une démence
+    - Relation M/F/Group: hypothèse: proportionnellement, les hommes (38% + 8%) semblent d'avantage touchés que les femmes (28% + 11%) par l'apparition d'une démence
          
          
 <h2><center>Etude des corrélations entre variables explicatives </center></h2>
@@ -184,21 +184,21 @@ Cette courbe est limitée à la classification binaire, elle permet de visualise
 
 
 - **Hyper-paramètres**:
-        - max_depth: 3
+    - max_depth: 3
         
 - **Métriques**:
-        - Précision: 79%
-        - Recall: 79%
-        - F1 Score: 79% 
-        - Accuracy: 79%
+    - Précision: 79%
+    - Recall: 79%
+    - F1 Score: 79% 
+    - Accuracy: 79%
      
 - **Features importance**: 
-        - MMSE: 0.54 La variable MMSE est de loin celle qui à la pondération la plus importante dans le cadre de la détection de la démence.
-        - ratio:  0.19 Dans une moindre mesure, la variable ratio joue également un rôle dans la prédiction.
-        - Age: 0.09 L'impact des autres variables (Age, EDUC, M/F et SES) est marginal sur la classification.
-        - EDUC: 0.07
-        - M/F: 0.05
-        - SES: 0.05
+    - MMSE: 0.54 La variable MMSE est de loin celle qui à la pondération la plus importante dans le cadre de la détection de la démence.
+    - ratio:  0.19 Dans une moindre mesure, la variable ratio joue également un rôle dans la prédiction.
+    - Age: 0.09 L'impact des autres variables (Age, EDUC, M/F et SES) est marginal sur la classification.
+    - EDUC: 0.07
+    - M/F: 0.05
+    - SES: 0.05
         
 - **Evaluation**
     - **Rapport de classification et matrice de confusion**:\
