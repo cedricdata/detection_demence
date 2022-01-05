@@ -9,8 +9,13 @@ Mettre en place un modèle prédictif chargé de détecter la présence de déme
 
 - **Identification de la target** : Group
 - **Nombre de lignes et de colonnnes** : 73 lignes et 15 colonnes
-- **Type de variables** : Variables de type float64: 5 / Variables de type int64: 5 / Variables de type object: 5
-- **Identification des valeurs manquantes** : 19 valeurs manquantes pour la variable SES/ 2 valeurs manquantes pour la variable MMSE
+- **Type de variables** : 
+   - Variables de type float64: 5 
+   - Variables de type int64: 5
+   - Variables de type object: 5
+- **Identification des valeurs manquantes** : 
+   - 19 valeurs manquantes pour la variable SES
+   - 2 valeurs manquantes pour la variable MMSE
 
 <h2><center>Analyse de fond du dataset</center></h2>
 
@@ -19,19 +24,21 @@ Mettre en place un modèle prédictif chargé de détecter la présence de déme
     - MRI ID: identifiant de l'IRM du patient
     - Hand: main dominante, variable peu pertinente car tous les patients sont droitiers. 
     
-- **Analyse univariée de la variable à expliquer**:
+- **Analyse de la variable à expliquer**:
 - **Variable qualitatives**:
-    - Group:  en fonction de leur état cognitif, les patients sont regroupés dans 3 classes.\
-    - Demented(souffre de démence), Nondemented(pas de démence), Converted(démence en cours de développement)\
+    - Group:  en fonction de leur état cognitif, les patients sont regroupés dans 3 classes.
+       - Demented(souffre de démence)
+       - Nondemented(pas de démence)
+       - Converted(démence en cours de développement)
 
 On observe un déséquilibre de classe, 50% de patients ne souffrant pas de démence, 40% de patients souffrant de démence et 10% de patients qui développent une démence, au cours de l'étude.
          
-- **Analyse univariée des variables explicatives**:
+- **Analyse des variables explicatives**:
  - **Variables quantitatives**: 
      - nWBV: Volume total du cerveau, normalisé 
      - ASF: Volume intracranien du patient, normalisé
      - eTIV: Estimation du volume intracranien du patient, exprimé en mm3
-     - Visit: Nombre de visite nécésessaire pour statuer sur la présence démence
+     - Visit: Nombre de visite nécésessaire pour statuer sur la présence d'une démence
      - MR Delay: Non défini, probablement lié à la mesure de l'IRM
      - Age: Age du patient, exprimé en année
      - EDUC: Age du patient à la fin de ces études, exprimé en année
@@ -78,7 +85,7 @@ Hypothèse nulle H0: les 2 variables sont indépendantes <br><br />
         
 <h2><center>Etude des corrélations entre variables explicatives et variable à expliquer</center></h2>
         
- **Analyse multivariée entre variables explicatives et variable à expliquer**:
+ **Analyse entre variables explicatives et variable à expliquer**:
   -  **Variables quantitatives**:
         - Relation nWBV/Group: Hypothèse: le volume total du cerveau semble lié à l'apparition de la démence.
         - Relation Age/Group: Hypothèse: l'âge semble lié à l'apparition de la démence.
@@ -92,14 +99,14 @@ Les variables ASF et eTIV ne semble pas lié à l'apparition de la démence chez
          
 <h2><center>Etude des corrélations entre variables explicatives </center></h2>
 
-**Analyse multivariée entre variables explicatives**:
-   - **Analyse multivariée entre variables quantitatives**:
-       - Relation entre eTIV/ASF: les variables sont parfaitement corrélées négativement.
+**Analyse entre variables explicatives**:
+   - **Analyse entre variables quantitatives**:
+       - Relation entre eTIV/ASF: les variables sont parfaitement corrélées, négativement.
        - Relation entre nWBV/Age: l'age du patient et le volume total du cerveau sont négativement corrélée.
-   - **Analyse multivariée entre variables quantitatives et variables qualitatives**:
+   - **Analyse entre variables quantitatives et variables qualitatives**:
        - Relation Visit/MR Delay: les variables sont fortement corrélés.
        - Relation EDUC/SES: les variables sont négativement corrélés. Plus le patient à fait des études et plus le statut socioéconomique est élevé.
-   - **Analyse multivariée entre variables qualitatives**
+   - **Analyse entre variables qualitatives**
        - Relation M/F/CDR: les femmes sont moins touchées par la démence
          
 <h1>3. Data-preprocessing</h1>
@@ -114,21 +121,21 @@ Les variables ASF et eTIV ne semble pas lié à l'apparition de la démence chez
 <h2><center>Features selection</center></h2>
 
 - **Variables quantitatives**: 
-   - nWBV: éliminée car l'information de cette variable explicative est contenue dans la variable ratio
-   - ASF: éliminée car l'information de cette variable explicative est contenue dans la variable ratio
-   - eTIV: éliminée car l'information de cette variable explicative est contenue dans la variable ASF
-   - Visit: éliminée car le nombre de visiste n'a pas de lien avec la détection de la maladie
-   - MR Delay: éliminée car cette variable explicative est inconnue 
-   - Age: conservée car l'âge d'un patient est lié à la maladie
-   - EDUC: conservé car le niveau d'éducation est lié à la maladie
-   - MMSE: conservé car cette variable explicative est nécéssaire au diagnostique de la maladie
-   - ratio: conservé car cette variable explicative est nécéssaire au diagnostique de la maladie
+   - nWBV: éliminée car l'information de cette variable explicative est contenue dans la variable ratio.
+   - ASF: éliminée car l'information de cette variable explicative est contenue dans la variable ratio.
+   - eTIV: éliminée car l'information de cette variable explicative est contenue dans la variable ASF.
+   - Visit: éliminé car cette variable aide au diagnostique de la démence, elle ne peut pas en être la cause.
+   - MR Delay: éliminée car cette variable explicative est inconnue. 
+   - Age: conservée car l'âge d'un patient est lié à la maladie.
+   - EDUC: conservé car le niveau d'éducation est lié à la maladie.
+   - MMSE: conservé car cette variable explicative est nécéssaire au diagnostique de la maladie.
+   - ratio: conservé car cette variable explicative est nécéssaire au diagnostique de la maladie.
 - **Variables qualitatives**:
-   - SES: conservé car le statut est lié à la maladie
-   - CDR: éliminé car cette variable explicative est un indicateur qui mesure la sévérité de la démence, elle ne peut pas  en être la cause.
-   - Group: éliminée car cette ancienne variable à expliquer est remplacé par la nouvelle variable malade  
-   - M/F: conservée car le sexe du patient est lié à la maladie 
-   - Malade: conservée car c'est la nouvelle variable à expliquée
+   - SES: conservé car le statut est lié à la maladie.
+   - CDR: éliminé car cette variable explicative est un indicateur qui mesure la sévérité de la démence, elle ne peut pas en être la cause.
+   - Group: éliminée car cette ancienne variable à expliquer est remplacé par la nouvelle variable malade.  
+   - M/F: conservée car le sexe du patient est lié à la maladie.
+   - Malade: conservée car c'est la nouvelle variable à expliquée.
         
 <h2><center>Features encoding</center></h2>
 
