@@ -3,12 +3,13 @@
 <h1> 1. Définition de l'objectif</h1>
 
 Mettre en place un modèle prédictif chargé de détecter la présence de démence chez un patient, en fonction des données cliniques disponibles.
+L'évaluation de certaines métriques telles que la précision, le recall, le f1-score et l'accuracy, permettra de juger de la performance du modèle prédictif.
 
 <h1> 2. Analyse exploratoire de données (EDA)</h1>
 <h2><center>Analyse de forme du dataset</center></h2>
 
 - **Identification de la target** : Group
-- **Nombre de lignes et de colonnnes** : 73 lignes et 15 colonnes
+- **Nombre de lignes et de colonnnes** : 373 lignes et 15 colonnes
 - **Type de variables** : 
    - Variables de type float64: 5 
    - Variables de type int64: 5
@@ -24,16 +25,17 @@ Mettre en place un modèle prédictif chargé de détecter la présence de déme
     - MRI ID: identifiant de l'IRM du patient
     - Hand: main dominante, variable peu pertinente car tous les patients sont droitiers. 
     
-- **Analyse de la variable à expliquer**:
-- **Variable qualitatives**:
-    - Group:  en fonction de leur état cognitif, les patients sont regroupés dans 3 classes.
-       - Demented(souffre de démence)
-       - Nondemented(pas de démence)
-       - Converted(démence en cours de développement)
+<h3>Analyse de la variable à expliquer:</h3>
+
+ - **Group: En fonction de leur état cognitif, les patients sont regroupés dans 3 classes.**
+    - Demented(souffre de démence)
+    - Nondemented(pas de démence)
+    - Converted(démence en cours de développement)
 
 On observe un déséquilibre de classe, 50% de patients ne souffrant pas de démence, 40% de patients souffrant de démence et 10% de patients qui développent une démence, au cours de l'étude.
          
-- **Analyse des variables explicatives**:
+<h3>Analyse des variables explicatives:</h3>
+
  - **Variables quantitatives**: 
      - nWBV: Volume total du cerveau, normalisé 
      - ASF: Volume intracranien du patient, normalisé
@@ -46,10 +48,14 @@ On observe un déséquilibre de classe, 50% de patients ne souffrant pas de dém
   - **Analyse des distributions**\
 Les variables 'nWBV' et  'Age' semblent présenter une distribution gaussienne.<br><br  /> 
 
-  - **Variable qualitatives**:
+  - **Variable qualitatives ou catégoriellles**:
       - SES: Statut socio-économique tel qu'évalué par l'indice Hollingshead (de 1(meilleur) à 5(plus bas))
       - CDR: Taux de démence clinique (0 = pas de démence, 0.5 = démence très sévère, 1 = démence sévère, 2 = démence modérée)  
-      - M/F: Sexe du patient
+      - Sex: Sexe du patient
+      
+  - **Analyse des distributions**\
+Les femmes sont d'avantage représentées que les hommes.\
+Presque tous les status socio-économique sont représentés. La distribution est presque uniforme. Il y a 5% de valeurs manquantes pour la variable SES. 
         
 <h2><center>Tests statistiques </center></h2>
 
@@ -94,8 +100,9 @@ Hypothèse nulle H0: les 2 variables sont indépendantes <br><br />
 Les variables ASF et eTIV ne semble pas lié à l'apparition de la démence chez un patients.
 
 -  **Variables qualitatives**:
-    - Relation M/F/Group: hypothèse: proportionnellement, les hommes (38% + 8%) semblent d'avantage touchés que les femmes (28% + 11%) par l'apparition d'une démence
-         
+   - Relation Sex/Target: Hypothèse: proportionnellement, les hommes (53% + 8% = 61%) semblent d'avantage touchés que les femmes (28% + 11% = 39%) par l'apparition d'une démence.
+   - Relation SES/Target: Hypothèse: le status socio-économique semble corrélé à la présence d'une démence.\
+   - Relation CDR/Target: Hypothèse: le taux de démence semble corrélé à la présence d'une démence, ce qui est logique, l'information apportée par cette variable est donc inutile 
          
 <h2><center>Etude des corrélations entre variables explicatives </center></h2>
 
@@ -107,17 +114,39 @@ Les variables ASF et eTIV ne semble pas lié à l'apparition de la démence chez
        - Relation Visit/MR Delay: les variables sont fortement corrélés.
        - Relation EDUC/SES: les variables sont négativement corrélés. Plus le patient à fait des études et plus le statut socioéconomique est élevé.
    - **Analyse entre variables qualitatives**
-       - Relation M/F/CDR: les femmes sont moins touchées par la démence
-         
+       - Relation Sex/CDR: les femmes sont moins touchées par la démence.
+
+<h2>Autre approche pour analyser les relations entre les variables explicatives et la variable à expliquer</h2>
+Il est intéressant de créer des sous ensembles à partir des modalités prises par la variable à expliquer. Le but étant d'analyser les distributions des variables explicatives en fonction des différents sous ensembles.  
+
+- Relation nWBV/target: Hypothèse: le volume total du cerveau semble lié à l'apparition de la démence.\
+- Relation Age/target: Hypothèse: l'âge semble lié à l'apparition de la démence.
+- Les variables ASF et eTIV ne semble pas lié à l'apparition de la démence chez un patients.
+- Relation EDUC/target: hypothèse: la durée des études semble lié à l'apparition de la démence. Plus le patient a fait de longues études et moins le risque de développer une démence est grand.
+- Relation MMSE/target: hypothèse: plus le score MMSE est faible et plus le risque de détecter une démence est important.
+
 <h1>3. Data-preprocessing</h1>
          
 <h2><center>Features engeenering</center></h2>
 
 - **Variables quantitatives**:
    - ratio: cette variable est le rapport entre le volume total de l'encéphale (nWBV) et le volume intracranien du patient (ASF). Cette nouvelle grandeur permet de mieux cerner le phénomène d'atrophie corticale.
+
 - **Variable qualitatives**:
    - malade: cette variable prend la valeur 1 pour un patient atteint de démence ou qui en développera une et la valeur 0 sinon. 
-        
+         
+<h3>Analyse des moyennes des distrubutions pour chaque sous ensemble</h3> 
+
+- Relation EDUC/malade: hypothèse: il semble que les moyennes de 'EDUC' chez les indivudus malades et non malades soient différentes
+
+- Relation ratio/malade: hypothèse: il semble que les moyennes de 'ratio' chez les indivudus malades et non malades soient différentes
+
+<h3>Test satistiques</h3>
+
+- Relation EDUC/malade: Les niveaux d’instructions sont significativement différents chez les patients souffrant de démence et ceux ne souffrant pas de démence, au seuil de risque de 5%.
+
+- Relation ratio/malade: Les ratios 'volume encéphalique normalisé/volume intracranien normalisé' sont significativement différents chez les patients souffrant de démence et ceux ne souffrant pas de démence, au seuil de risque de 5%. 
+
 <h2><center>Features selection</center></h2>
 
 - **Variables quantitatives**: 
@@ -178,7 +207,7 @@ Le rapport de classification reprend sous forme d'un tableau, les différentes m
 - **Matrice de confusion**\
 La matrice de confusion est un tableau informant sur l'exactitude de la classification.
 - **Courbes d'apprentissage**\
-Les courbes d'apprentissage déterminent les scores sur les jeux de données d'entrainement et de validation, par la méthode de validation croisée. Ces courbes permettent la détection du phénomène de sur-entrainement.
+En fonction de la métrique choisie, les courbes d'apprentissage déterminent les scores sur les jeux de données d'entrainement et de validation, par la méthode de validation croisée. Ces courbes permettent la détection du phénomène de sur-entrainement.
 - **Courbes de précision et de rappel**\
 Ces courbes sont limitées à la classification binaire, elles informent sur la précision et le rappel pour différents seuils de probabilité d'appartenance à chacune des classes. 
 - **Courbe ROC**\
@@ -189,6 +218,7 @@ Cette courbe est limitée à la classification binaire, elle permet de visualise
 
 <h2><center>Première modélisation avec un arbre de décision</center></h2>
 
+La première modélisation s'effectue avec un arbre de décision, il n'est pas nécessaire de normaliser les données avec ce type d'estimateur.
 
 - **Hyper-paramètres**:
     - max_depth: 3
@@ -273,6 +303,7 @@ Les estimateurs produisant les meilleurs scores sont: RandomForestClassifier et 
    - Recall: 84%
    - F1 Score: 91% 
    - Accuracy: 91%
+   - AUC = 0.94
       
 <h2><center>Deuxième estimateur: SVM</center></h2>
 
@@ -287,6 +318,7 @@ Les estimateurs produisant les meilleurs scores sont: RandomForestClassifier et 
    - Recall: 86%
    - F1 Score: 86% 
    - Accuracy: 86%
+   - AUC = 0.93
     
 <h1>7. Conclusion</h1>
 
@@ -299,7 +331,7 @@ Pour la classe des patients malades, les métriques sont les suivantes:
 
 La classe des patients malades est donc correctement prédite et détectée par la modèlisation finale.
 
-Le taux de bonne prédiction(Accuracy) du modèle est de 91%, il est considéré comme performant pour répondre à notre problématique.
+Le taux de bonne prédiction(Accuracy) du modèle est de 91% et son score AUC est de 0.94, cette modèlisation est considérée comme performante pour répondre à notre problématique.
     
 
       
